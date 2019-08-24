@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include CurrentUserConcern
+
   def create
     # We have a user model which we find by email
     # params[user][email] is what the front-end sends because it wraps up a User domain object with an email field.
@@ -24,5 +26,26 @@ class SessionsController < ApplicationController
           status: 401 # unauthorized
       }
     end
+  end
+
+  def logged_in
+    if @current_user
+      render json: {
+          logged_in: true,
+          user: @current_user
+      }
+    else
+      render json: {
+          logged_in: false
+      }
+    end
+  end
+
+  def logout
+    reset_session
+    render json: {
+        status: 200,
+        logged_out: true # can be useful as we can send this back to the front-end so we know the user has been logged out.
+    }
   end
 end
