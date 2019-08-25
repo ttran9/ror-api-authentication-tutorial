@@ -6,3 +6,5 @@
     
 - I will be creating branches for each individual video. The initial master branch will have the changes up to the end of video 1
 which is just configuring our application to use HTTP cookies and to whitelist domains.
+
+- The repository with the corresponding front-end code is [here](https://github.com/ttran9/ror-api-authentication-tutorial-frontend).
